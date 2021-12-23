@@ -1,0 +1,305 @@
+You12:43 PM
+scp -i ./AWS16Dec2021.pem ./txnsSmall.txt ec2-user@54.211.108.182:/home/ec2-user/source
+scp -i ./AWS16Dec2021.pem ./txnsSmall.txt ec2-user@54.211.108.182:/home/ec2-user/source
+using this in cmd
+Prakhar Jain12:46 PM
+AWSAgent.channels = aws
+AWSAgent.sources = dir
+AWSAgent.sinks = awsSink
+
+AWSAgent.sources.dir.type = spooldir
+AWSAgent.sources.dir.channels = aws
+AWSAgent.sources.dir.spoolDir = /home/ec2-user/source
+AWSAgent.sources.dir.fileHeader = true
+
+
+AWSAgent.sinks.awsSink.type = file_roll
+AWSAgent.sinks.awsSink.channel = aws
+AWSAgent.sinks.awsSink.sink.directory = /var/log/transactions
+
+AWSAgent.channels.aws.type = memory
+Prakhar Jain12:54 PM
+AWSAgent
+Prakhar Jain12:56 PM
+sudo chown -R $USER:$GROUP /var/log/transactions
+
+
+
+
+using this in cmd
+Prakhar Jain12:46 PM
+AWSAgent.channels = aws
+AWSAgent.sources = dir
+AWSAgent.sinks = awsSink
+
+AWSAgent.sources.dir.type = spooldir
+AWSAgent.sources.dir.channels = aws
+AWSAgent.sources.dir.spoolDir = /home/ec2-user/source
+AWSAgent.sources.dir.fileHeader = true
+
+
+AWSAgent.sinks.awsSink.type = file_roll
+AWSAgent.sinks.awsSink.channel = aws
+AWSAgent.sinks.awsSink.sink.directory = /var/log/transactions
+
+AWSAgent.channels.aws.type = memory
+
+\
+
+
+
+import boto3
+import time
+import json
+import decimal
+import pandas as pd
+import pytz
+import io
+
+aws_session = boto3.Session()
+client = aws_session.client('s3', region_name="us-east-1")
+
+def get_data_frame():
+    print("s3 main called")
+    csv_obj = client.get_object(Bucket="awscrg", Key="txns")
+    body = csv_obj['Body']
+    df = pd.read
+
+def put_items(txns, df):
+    print("DynamoDB put_items called")
+    # for i, row in df.iterrows():
+    #     item = row.to_dict()
+    #     table.put_item(Item=item)
+
+
+
+
+Demo on S3 Glacier
+-----------------------
+1. Upload the file and Change the storage class to Glacier
+    a. Click on Uploaded File in Bucket> Go to Properties
+    b. Go to Storage Class > Edit > Select Glacier > Ok
+2. Try Retrieval .
+
+
+
+
+  1. IN search bar type "s3" and go to the dashboard.
+    2. Click on Create Bucket
+    3. Assign name to the bucket and uncheck Block Public Access
+    4. Click on Create Bucket
+2. Upload a sample file 
+3. Check if the sample file is accessible via link (You should not be able to access)
+4. Go to Permission Tab of the bucket and enable ACL via Object Ownership.
+5. Go To Permission Tab of the object > Click on Edit > Everyone (Enable Read)
+6. Check if the sample file is accessible via link (You should be able to access)
+
+
+
+
+
+
+
+from: Charan N <crg@tigeranalytics.com>
+
+to:   ABC <abc@tigeranalytics.com>
+cc:   MNC <mnc@tigeranalytics.com>
+bcc:  BCC <bcc@tigeranalytics.com
+
+Sub
+
+
+
+Steps to Create a Data Stream
+1. Go to Kinesis Dashboard > Click on Kinesis Data Stream > Create Data Stream
+2. Set the Stream name  and Click on Create Data Stream
+3. Append the below configuration in the agent file
+{
+      "filePattern": "/var/log/cadabra/*.log",
+      "kinesisStream": "CadabraOrders",
+      "partitionKeyOption": "RANDOM",
+      "dataProcessingOptions": [
+         {
+            "optionName": "CSVTOJSON",
+            "customFieldNames": ["InvoiceNo", "StockCode", "Description", "Quantity", "InvoiceDate", "UnitPrice", "Customer", "Country"]
+         }
+      ]
+    }
+
+
+
+
+{
+  "cloudwatch.emitMetrics": true,
+  "kinesis.endpoint": "",
+  "firehose.endpoint": "",
+
+  "flows": [
+     {
+      "filePattern": "/var/log/cadabra/*.log",
+      "kinesisStream": "CadabraOrdersWithPreprocessing",
+      "partitionKeyOption": "RANDOM",
+      "dataProcessingOptions": [
+         {
+            "optionName": "CSVTOJSON",
+            "customFieldNames": ["InvoiceNo", "StockCode", "Description", "Quantity", "InvoiceDate", "UnitPrice", "Customer", "Country"]
+         }
+      ]
+    }
+  ]
+
+
+
+4. Restarted the agent
+    sudo service aws-kinesis-agent restart
+
+
+
+
+
+
+[ec2-user@ip-172-31-85-166 ~]$
+
+1. Convert pem key file into ppk key f{
+  "cloudwatch.emitMetrics": true,
+  "kinesis.endpoint": "",
+  "firehose.endpoint": "firehose.us-east-1.amazonaws.com",
+sudo mkdir /var/log/cadabracd /etc/aws-kinesis/
+  "flows": [
+    {
+      "filePattern": "/var/log/cadabra/*.log",
+      "deliveryStream": "CadabraLogs"
+    }
+  ]
+}ile. This can be done using PUTTYGEN.exe
+2. OPen Putty.exe and Copy paste the hostname in the Host Name
+3. On the left hand side menu, click SSH > Auth.  and set the private key 
+4. Click on Connect
+
+
+
+
+
+1. Type ec2 on search box and go to the dashboard'
+2. Click on Launch Instance > Launch Instance > Amazon Linux 2 AMI (HVM), SSD Volume Type > t2.micro > Launch > Create a new Key Pair (Download the KeyPair and Save it to reuse the same for connecting to the machine) > Launch Instance
+
+
+
+mySQL Workbench pwd is 
+
+Root@123
+
+okay sir thanks alot 
+
+Please check 
+
+working sir i can see all the required fuctions
+
+
+perfectly working sir thanks alot..
+
+Welcome
+
+https://aka.ms/ssmsfullsetup
+
+
+
+
+After an incredible 4 years at Infosys, it’s time for me to say goodbye to this Amazing Company!
+I’m sure that all my learnings in these years will help me shape my career in a better way!
+
+Thank you Infosys and also my lovely colleagues and friends!
+
+
+crgazure
+Root@123
+
+
+
+
+
+
+
+spark.conf.set(
+    "fs.azure.account.key.dataforbigdata345.dfs.core.windows.net", #DataLake Path
+    dbutils.secrets.get(scope="datalakeaccess123456",key="adlsaccess")) #(scope="vaultName",key="scopeName")
+df = spark.read.format("csv").option("header","true").load("abfss://data@dataforbigdata345.dfs.core.windows.net/logdata/Log.csv")
+df.show(5)
+
+
+
+
+
+
+Here we need to specify the clustered index based on a column
+
+CREATE TABLE [txns]
+(
+	[txnid] [bigint],
+	[txndate] [varchar](200),
+	[custid] [bigint],
+	[amount] [float],
+	[category] [varchar](200),
+	[subcategory] [varchar](200),
+	[city] [varchar](200),
+	[state] [varchar](200),
+	[txntype] [varchar](200)
+)
+
+Grant the permissions again. for every new table, every new table needs associated permission
+
+GRANT INSERT ON logdata TO user_load;
+GRANT SELECT ON logdata TO user_load;
+
+COPY INTO [txns] FROM 'https://bigdatacrg.blob.core.windows.net/txnsdata/txnsdir/txns'
+
+WITH
+
+
+COPY INTO txns FROM 'https://bigdatacrg.blob.core.windows.net/txnsdata/txnsdir/txns'
+WITH
+(
+FIRSTROW=2
+)
+
+
+SELECT * FROM [txns]
+
+
+
+Click on Author > Click on + sign > Pipeline > Pipeline
+Move & Transform > Drag and Drop Copy data 
+Click on Source > Perform all valid settings
+Click on Sink > Perform all valid settings
+Click on Mapping > Import Schemas
+Click on Settings > Enable Staging
+Click on User Properties > Auto generate
+Click on Validate
+Click on Debug
+
+
+
+
+
+
+ auto_data__1_.csv
+customerData (1).json was renamed to customerData__1_.json
+
+
+dbfs:/FileStore/shared_uploads/charan028@outlook.com/auto_data__1_.csv
+dbfs:/FileStore/shared_uploads/charan028@outlook.com/customerData__1_.json
+
+
+
+/dbfs/FileStore/shared_uploads/charan028@outlook.com/auto_data__1_.csv
+/dbfs/FileStore/shared_uploads/charan028@outlook.com/customerData__1_.json
+
+
+df1 = spark.read.format("csv").option("header", "true").load("dbfs:/FileStore/shared_uploads/charan028@outlook.com/auto_data__1_.csv")
+df2 = spark.read.format("json").load("dbfs:/FileStore/shared_uploads/charan028@outlook.com/customerData__1_.json")
+
+
+import pandas as pd
+
+df1 = pd.read_csv("/dbfs/FileStore/shared_uploads/charan028@outlook.com/auto_data__1_.csv")
+df2 = pd.read_json("/dbfs/FileStore/shared_uploads/charan028@outlook.com/customerData__1_.json")
